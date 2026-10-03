@@ -6,13 +6,12 @@
 <title>Zihan Jia</title>
 <meta name="description" content="Zihan Jia, MPhil candidate at UNSW Sydney, looking for PhD positions.">
 <style>
-/* Layout: sticky profile sidebar on the left, content column on the right; research is a trajectory tree with three clickable nodes. */
+/* Layout: sticky profile sidebar on the left, short bio on the right. */
 :root {
   --bg: #FFFFFF;
   --text: #1F2328;
   --muted: #5F6B76;
   --line: #E3E6EA;
-  --trunk: #B4BCC5;
   --accent: #1A5FB4;
   --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
   color-scheme: light;
@@ -22,7 +21,7 @@ body {
   color: var(--text);
   font-family: var(--font);
   font-size: 16px;
-  line-height: 1.65;
+  line-height: 1.7;
 }
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
@@ -44,62 +43,12 @@ h1 { font-size: 24px; font-weight: 600; line-height: 1.25; margin: 18px 0 4px; }
 .links a, .links span { overflow-wrap: anywhere; }
 
 /* main column */
-main { min-width: 0; }
+main { min-width: 0; max-width: 720px; }
 .status { margin: 0; }
-
-/* sections */
-section { margin-top: 48px; }
-h2 { font-size: 20px; font-weight: 600; margin: 0 0 18px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
-.group-title { font-size: 15px; font-weight: 600; color: var(--muted); margin: 26px 0 10px; }
-.group-title:first-of-type { margin-top: 0; }
-.item + .item { margin-top: 14px; }
-.item-head { display: flex; justify-content: space-between; align-items: baseline; gap: 4px 16px; flex-wrap: wrap; }
-.item-title { font-weight: 600; }
-.item-date { color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
-.item p { margin: 2px 0 0; color: var(--muted); }
-
-/* research tree */
-.tree { position: relative; height: 240px; margin-top: 8px; }
-.tree svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
-.tree path { fill: none; vector-effect: non-scaling-stroke; stroke-linecap: round; }
-.trunk { stroke: var(--trunk); stroke-width: 1.5; }
-.branch { stroke: var(--trunk); stroke-width: 1.5; transition: stroke .25s, stroke-width .25s; }
-.branch.on { stroke: var(--accent); stroke-width: 2; }
-.dashed { stroke-dasharray: 4 5; }
-
-.node {
-  position: absolute; width: 20px; height: 20px; padding: 0; margin: 0;
-  transform: translate(-50%, -50%); background: none; border: 0; cursor: pointer;
-  font: inherit; color: inherit;
-}
-.node .dot {
-  position: absolute; inset: 3px; border-radius: 50%;
-  border: 2px solid var(--trunk); background: var(--bg);
-  transition: background .2s, border-color .2s, transform .2s;
-}
-.node:hover .dot { border-color: var(--accent); transform: scale(1.15); }
-.node .label {
-  position: absolute; left: 50%; transform: translateX(-50%);
-  white-space: nowrap; text-align: center; line-height: 1.35;
-}
-.node.up .label { bottom: calc(100% + 6px); }
-.node.down .label { top: calc(100% + 6px); }
-.node .name { display: block; font-size: 15px; font-weight: 600; transition: color .2s; }
-.node .when { display: block; font-size: 13px; color: var(--muted); }
-.node[aria-selected="true"] .dot { background: var(--accent); border-color: var(--accent); }
-.node[aria-selected="true"] .name { color: var(--accent); }
-
-.panels { display: grid; margin-top: 12px; }
-.panel {
-  grid-area: 1 / 1; visibility: hidden; opacity: 0;
-  transition: opacity .25s, visibility 0s .25s;
-}
-.panel.on { visibility: visible; opacity: 1; transition: opacity .25s; }
-.panel h3 { font-size: 17px; font-weight: 600; margin: 0 0 6px; }
-.panel p { margin: 0; }
-
-/* about */
-.about p { margin: 0; }
+section { margin-top: 40px; }
+h2 { font-size: 20px; font-weight: 600; margin: 0 0 16px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+.bio p { margin: 0; }
+.bio p + p { margin-top: 1em; }
 
 footer { margin-top: 64px; padding-top: 16px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
 
@@ -109,12 +58,6 @@ footer { margin-top: 64px; padding-top: 16px; border-top: 1px solid var(--line);
   .avatar { width: 88px; height: 88px; }
   h1 { margin-top: 0; }
   .links { grid-column: 1 / -1; margin-top: 18px; }
-}
-@media (max-width: 480px) {
-  .node .name { font-size: 14px; }
-}
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { transition: none !important; }
 }
 </style>
 </head>
@@ -148,117 +91,18 @@ footer { margin-top: 64px; padding-top: 16px; border-top: 1px solid var(--line);
   </aside>
 
   <main>
-  <p class="status">I am currently looking for <strong>PhD positions</strong>, and any opportunities are welcome.</p>
+    <p class="status">I am currently looking for <strong>PhD positions</strong>, and any opportunities are welcome.</p>
 
-  <section id="background">
-    <h2>Background</h2>
+    <section class="bio" id="bio">
+      <h2>Short Bio</h2>
+      <p>I am an MPhil candidate in Computer Science and Engineering at UNSW Sydney, supervised by <a href="https://www.gustavobatista.com/" target="_blank" rel="noopener">Prof. Gustavo Batista</a>. Before coming to UNSW, I completed my BSc at the School of Mathematical Sciences, Peking University. My research interests include reinforcement learning, LLM agents, and foundation models for physical and embodied systems.</p>
+      <p>During my first year at UNSW, I explored several directions in time-series classification, including reinforcement learning, spatio-temporal data mining, self-distillation, and few-shot learning. I recently consolidated this work into three manuscripts that are currently under review. I am now working on reinforcement learning for tool-using LLM agents, exploring how informative points along an agent’s trajectory can guide more efficient branch rollouts.</p>
+      <p>In the longer term, I want to build foundation models that can understand and interact with the physical world. My view is that a world model should represent the physical state of the world, rather than simply its visual appearance. Building on my background in spatio-temporal learning, I am interested in modeling how these states evolve and respond to actions, and in using reinforcement learning to help such models adapt through interaction.</p>
+      <p>Outside research, I enjoy Gomoku, swimming, and hiking, and I have recently started learning chess. I am also a big fan of Keigo Higashino’s novels—<em>Journey Under the Midnight Sun</em> is my favorite.</p>
+    </section>
 
-    <h3 class="group-title">Education</h3>
-    <div class="item">
-      <div class="item-head">
-        <span class="item-title">UNSW Sydney</span>
-        <span class="item-date">2025 – Present</span>
-      </div>
-      <p>MPhil, School of Computer Science and Engineering</p>
-    </div>
-    <div class="item">
-      <div class="item-head">
-        <span class="item-title">Peking University</span>
-        <span class="item-date">2021 – 2025</span>
-      </div>
-      <p>BSc in Information and Computing Science, School of Mathematical Sciences</p>
-      <p>Outstanding Graduate, 2025</p>
-    </div>
-
-    <h3 class="group-title">Teaching</h3>
-    <div class="item">
-      <div class="item-head">
-        <span class="item-title">Casual Academic (Tutor), UNSW Sydney</span>
-        <span class="item-date">2026 – Present</span>
-      </div>
-      <p>COMP9417 Machine Learning and Data Mining</p>
-      <p>COMP9444 Neural Networks and Deep Learning</p>
-    </div>
-  </section>
-
-  <section id="research">
-    <h2>Research</h2>
-
-    <div class="tree" role="tablist" aria-label="Research stages">
-      <svg viewBox="0 0 100 240" preserveAspectRatio="none" aria-hidden="true">
-        <path class="trunk" d="M0 120 H64"/>
-        <path class="trunk dashed" d="M64 120 H100"/>
-        <path class="branch" id="branch-0" d="M8 120 C15 120 15 64 22 64"/>
-        <path class="branch" id="branch-1" d="M38 120 C45 120 45 176 52 176"/>
-        <path class="branch dashed" id="branch-2" d="M68 120 C75 120 75 64 82 64"/>
-      </svg>
-
-      <button class="node up" style="left: 22%; top: 64px;" role="tab" id="tab-0" aria-controls="panel-0" aria-selected="false" tabindex="-1" type="button">
-        <span class="dot"></span>
-        <span class="label"><span class="name">Time series</span><span class="when">Before</span></span>
-      </button>
-      <button class="node down" style="left: 52%; top: 176px;" role="tab" id="tab-1" aria-controls="panel-1" aria-selected="true" tabindex="0" type="button">
-        <span class="dot"></span>
-        <span class="label"><span class="name">Agentic RL</span><span class="when">Now</span></span>
-      </button>
-      <button class="node up" style="left: 82%; top: 64px;" role="tab" id="tab-2" aria-controls="panel-2" aria-selected="false" tabindex="-1" type="button">
-        <span class="dot"></span>
-        <span class="label"><span class="name">Physical AI</span><span class="when">Next</span></span>
-      </button>
-    </div>
-
-    <div class="panels">
-      <div class="panel" role="tabpanel" id="panel-0" aria-labelledby="tab-0" aria-hidden="true">
-        <h3>Time series</h3>
-        <p>My earlier research focused on time-series classification, with three manuscripts currently under review. These projects exposed me to reinforcement learning, spatio-temporal data mining, self-distillation, and few-shot learning.</p>
-      </div>
-      <div class="panel on" role="tabpanel" id="panel-1" aria-labelledby="tab-1" aria-hidden="false">
-        <h3>Agentic RL for LLM agents</h3>
-        <p>I currently work on reinforcement learning for tool-using LLM agents. Rather than generating every rollout from scratch, I select informative points along an agent’s trajectory and branch new rollouts from them, making training more efficient.</p>
-      </div>
-      <div class="panel" role="tabpanel" id="panel-2" aria-labelledby="tab-2" aria-hidden="true">
-        <h3>Physical AI</h3>
-        <p>I am interested in learning systems that can understand and act in the physical world. Building on my background in spatio-temporal learning and reinforcement learning, I hope to develop foundation models for embodied intelligence.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="about" class="about">
-    <h2>About me</h2>
-    <p>Outside research, I enjoy swimming and hiking. I value patience, curiosity, and especially good research taste.</p>
-  </section>
-
-  <footer>© 2026 Zihan Jia</footer>
+    <footer>© 2026 Zihan Jia</footer>
   </main>
 </div>
-
-<script>
-(function () {
-  var tabs = [].slice.call(document.querySelectorAll('.node'));
-  var panels = [].slice.call(document.querySelectorAll('.panel'));
-  var branches = [0, 1, 2].map(function (i) { return document.getElementById('branch-' + i); });
-  var active = 1;
-
-  function select(n, focus) {
-    active = n;
-    tabs.forEach(function (t, j) { t.setAttribute('aria-selected', j === n); t.tabIndex = j === n ? 0 : -1; });
-    panels.forEach(function (p, j) { p.classList.toggle('on', j === n); p.setAttribute('aria-hidden', j !== n); });
-    branches.forEach(function (b, j) { b.classList.toggle('on', j === n); });
-    if (focus) tabs[n].focus();
-  }
-
-  tabs.forEach(function (t, j) {
-    t.addEventListener('click', function () { select(j); });
-    t.addEventListener('keydown', function (e) {
-      var n = null;
-      if (e.key === 'ArrowRight') n = (active + 1) % 3;
-      else if (e.key === 'ArrowLeft') n = (active + 2) % 3;
-      if (n !== null) { e.preventDefault(); select(n, true); }
-    });
-  });
-
-  select(active);
-})();
-</script>
 </body>
 </html>
